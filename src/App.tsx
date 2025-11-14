@@ -77,7 +77,10 @@ function App() {
           href="https://internetsculptures.com"
           className="internet-sculptures-link"
         >
-          made with internetsculptures.com
+          <img
+            src="/internet-sculptures-wordmark.png"
+            alt="Internet Sculptures"
+          />
         </a>
       </footer>
     </div>
