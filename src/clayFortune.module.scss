@@ -1,0 +1,78 @@
+@import "./index.scss";
+
+.fortuneContainer {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.fortuneHalf {
+  position: absolute;
+  top: -50%;
+  width: 50%;
+  height: auto;
+  transition: all 1.5s ease-out;
+  opacity: 1;
+
+  &.left {
+    left: 28%;
+    transform: translateX(-48%);
+  }
+
+  &.right {
+    right: 25%;
+    transform: translateX(45%);
+  }
+
+  &.open {
+    opacity: 0;
+
+    &.left {
+      transform: translateY(25%) translateX(-200%) rotate(-20deg);
+    }
+
+    &.right {
+      transform: translateY(25%) translateX(200%) rotate(20deg);
+    }
+  }
+}
+
+.fortune {
+  z-index: 1;
+  background: #fff;
+  color: #000;
+  line-height: 1.2;
+  padding: 1.25em 0.5em;
+  padding-top: 1em;
+  padding-bottom: 0.75em;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px 8px rgba(63, 63, 63, 0.3);
+  width: -webkit-fill-available;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+  position: relative;
+
+  // Single blue bar at the top
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background-color: #3bd3fd;
+    border-radius: 2px 2px 0 0;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}

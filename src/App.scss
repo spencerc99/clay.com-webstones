@@ -1,0 +1,60 @@
+@import "./index.scss";
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+  padding: 1rem;
+}
+
+.header {
+  width: 100%;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5em;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.clay-logo {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 2em;
+    width: auto;
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.internet-sculptures-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.875rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
