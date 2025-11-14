@@ -1,6 +1,6 @@
 // ABOUTME: Main app component that displays a random Clay question
 // ABOUTME: with fortune cookie animation
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ClayFortuneView } from "./ClayFortuneView";
 import "./App.scss";
 
@@ -28,34 +28,10 @@ const ClayQuestions = [
 ];
 
 function App() {
-  const [question, setQuestion] = useState("");
-
-  useEffect(() => {
-    const randomQuestion =
-      ClayQuestions[Math.floor(Math.random() * ClayQuestions.length)];
-    setQuestion(randomQuestion);
-  }, []);
-
-  useEffect(() => {
-    const existingScript = document.querySelector(
-      'script[src="https://static.claydar.com/init.v1.js?id=cy382askCa"]'
-    );
-    if (existingScript) return;
-
-    const script = document.createElement("script");
-    script.src = "https://static.claydar.com/init.v1.js?id=cy382askCa";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      const scriptToRemove = document.querySelector(
-        'script[src="https://static.claydar.com/init.v1.js?id=cy382askCa"]'
-      );
-      if (scriptToRemove) {
-        scriptToRemove.remove();
-      }
-    };
-  }, []);
+  const [question] = useState(
+    () => ClayQuestions[Math.floor(Math.random() * ClayQuestions.length)]
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="app">
@@ -82,7 +58,39 @@ function App() {
             alt="Internet Sculptures"
           />
         </a>
+        <div style={{ marginLeft: "auto" }}>
+          <button
+            className="what-is-this-link"
+            onClick={() => setIsModalOpen(true)}
+          >
+            what is this?
+          </button>
+        </div>
       </footer>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-button"
+              onClick={() => setIsModalOpen(false)}
+            >
+              ×
+            </button>
+            <p>
+              This is a collection of conversation starter questions from{" "}
+              <a href="https://clay.com">Clay</a>, presented as a fortune cookie
+              experience.
+            </p>
+            <p>
+              Built with{" "}
+              <a href="https://internetsculptures.com">
+                internetsculptures.com
+              </a>
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
